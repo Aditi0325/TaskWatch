@@ -1,3 +1,4 @@
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI
 from pydantic import BaseModel
 import pandas as pd
@@ -7,6 +8,13 @@ import io
 import base64
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Set this to the appropriate origin
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)  
 
 @app.get("/")
 def check():
